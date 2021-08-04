@@ -2,6 +2,7 @@
 
 set -ex
 set -o pipefail
+echo "use extra channel to search for packages"
 
 go_to_build_dir() {
     if [ ! -z $INPUT_SUBDIR ]; then
@@ -25,7 +26,9 @@ check_if_meta_yaml_file_exists() {
 
 build_package(){
     # Build for Linux
-    conda build -c conda-forge -c pytorch -c fcakyon -c districtdatalabs --output-folder . .
+    channels_line=$(printf " -c %s" "${INPUT_DOWNLOADCHANNELS[@]}")   
+    # conda build -c conda-forge -c pytorch  --output-folder . .
+    conda build ${channels_line}  --output-folder . .
 
     # Convert to other platforms: OSX, WIN
     if [[ $INPUT_PLATFORMS == *"osx"* ]]; then
