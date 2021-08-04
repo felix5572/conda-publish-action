@@ -27,7 +27,7 @@ check_if_meta_yaml_file_exists() {
 build_package(){
     # Build for Linux
     # channels_line=$(printf " -c %s" "${INPUT_DOWNLOADCHANNELS[@]}")   
-    conda build -c conda-forge -c pytorch -c deepmodeling -c yfb222333 -output-folder . .
+    conda build -c conda-forge -c pytorch -c deepmodeling -c yfb222333 --output-folder . .
     # conda build ${channels_line}  --output-folder . .
 
     # Convert to other platforms: OSX, WIN
