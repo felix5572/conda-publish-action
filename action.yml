@@ -13,9 +13,6 @@ inputs:
   platforms:
     description: 'Platforms to publish [osx/linux/win]'
     default: 'win osx linux'
-  downloadchannels:
-    description: 'conda channels to search for packages and download'
-    default: ['defaults', 'conda-forge']
   
 runs:
   using: 'docker'
