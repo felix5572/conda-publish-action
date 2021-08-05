@@ -41,8 +41,10 @@ build_package(){
 
 upload_package(){
     export ANACONDA_API_TOKEN=$INPUT_ANACONDATOKEN
-    anaconda upload --label main noarch/*.tar.bz2
 
+    if [[ $INPUT_PLATFORMS == *"noarch"* ]]; then
+    anaconda upload --label main noarch/*.tar.bz2
+    fi
     if [[ $INPUT_PLATFORMS == *"osx"* ]]; then
     anaconda upload --label main osx-64/*.tar.bz2
     fi
