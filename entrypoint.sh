@@ -27,7 +27,7 @@ check_if_meta_yaml_file_exists() {
 build_package(){
     # Build for Linux
     # channels_line=$(printf " -c %s" "${INPUT_DOWNLOADCHANNELS[@]}")   
-    conda build -c conda-forge -c pytorch -c deepmodeling -c yfb222333 --output-folder . .
+    conda build -c conda-forge -c pytorch -c deepmodeling --output-folder . .
     # conda build ${channels_line}  --output-folder . .
 
     # Convert to other platforms: OSX, WIN
@@ -41,6 +41,8 @@ build_package(){
 
 upload_package(){
     export ANACONDA_API_TOKEN=$INPUT_ANACONDATOKEN
+    anaconda upload --label main noarch/*.tar.bz2
+
     if [[ $INPUT_PLATFORMS == *"osx"* ]]; then
     anaconda upload --label main osx-64/*.tar.bz2
     fi
